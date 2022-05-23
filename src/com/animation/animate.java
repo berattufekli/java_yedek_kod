@@ -4,6 +4,7 @@ import javafx.scene.control.TextField;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
@@ -56,7 +57,13 @@ public class animate {
     	tt1.setByX(x);
     	tt1.play();
     }
-    
+	
+	public static void translate_transition(TabPane pane, double x) {
+    	TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.6), pane);
+    	tt1.setByX(x);
+    	tt1.play();
+    }
+	
 	public static void translate_transition(Label lbl, int x) {
     	TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.6), lbl);
     	tt1.setByX(x);

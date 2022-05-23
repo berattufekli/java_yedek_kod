@@ -38,7 +38,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class AnasayfaController {
-	
 	private double x;
 	private double y;
 
@@ -213,6 +212,9 @@ public class AnasayfaController {
 
     @FXML
     private RadioButton gidisDonus;
+    
+    @FXML
+    private Pane inside_panel;
 
     @FXML
     private Pane inside_panel1;
@@ -225,6 +227,9 @@ public class AnasayfaController {
 
     @FXML
     private Pane inside_panel4;
+    
+    @FXML
+    private Pane inside_panel5;
 
     @FXML
     private Pane labelPanel;
@@ -262,7 +267,6 @@ public class AnasayfaController {
     private boolean tekyonselect = false;
     private boolean gidisdonusselect = false;
     
-    
     Connection baglanti = null;
 	PreparedStatement sorguIfadesi = null;
 	ResultSet getirilen = null;
@@ -285,8 +289,7 @@ public class AnasayfaController {
 
     @FXML
     void YonClick(ActionEvent event) {
-    	if(tekYon.isSelected()) {
-			
+    	if(tekYon.isSelected()) {		
 			gidisDonus.setStyle("-fx-text-fill: #a6abb7");
 			tekYon.setStyle("-fx-text-fill:black;");
 			datetime_donus.setDisable(true);
@@ -294,9 +297,9 @@ public class AnasayfaController {
 			combo_nereden.setDisable(false);
 			combo_nereye.setDisable(false);
 			yolcular.setDisable(false);
-			btn_ara.setDisable(false);
-			
-    	}else {
+			btn_ara.setDisable(false);	
+    	}
+    	else {
 			tekYon.setStyle("-fx-text-fill: #a6abb7");
 			gidisDonus.setStyle("-fx-text-fill:black;");
 			datetime_donus.setDisable(false);
@@ -381,7 +384,6 @@ public class AnasayfaController {
     		else {
     			MessageBox(AlertType.ERROR, "Hata", "Sefer seçimi yapmadınız.", "Lütfen tekar deneyiniz");
     		}
-    		
     	}
     	else if(gidisDonus.isSelected()) {
     		if(!selectedGidis.isEmpty() || !selectedDonus.isEmpty()) {
@@ -390,7 +392,6 @@ public class AnasayfaController {
     		else {
     			MessageBox(AlertType.ERROR, "Hata", "Sefer seçimi yapmadınız.", "Lütfen tekar deneyiniz");
     		}
-    		
     	}
     }
 
@@ -523,8 +524,7 @@ public class AnasayfaController {
 
     @FXML
     void minimize_btnClick(ActionEvent event) {
-    	Stage obj = (Stage) minimize_btn.getScene().getWindow();
-    	obj.setIconified(true);
+
     }
 
     @FXML
@@ -685,7 +685,6 @@ public class AnasayfaController {
             	donus3panel.setDisable(true);
             	donus4panel.setDisable(true);
             	lbl_donus.setDisable(true);
-            	
             	
             	animate.fade_in(lbl_gidis);
             	animate.translate_transition(lbl_gidis, +180);
@@ -885,14 +884,53 @@ public class AnasayfaController {
     				stage.setY(mouseEvent.getScreenY() - y);
     			});
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println(e.getMessage().toString());
 			}
-    		
     		System.out.println("Koltuk Seçimine Geçiliyor");
     	}
     	else if(sonuc.get()==btn2) {
     		System.out.println("İptal Edildi.");
     	}	
     }
+    
+    public void animasyon_ac() {
+    	parent_panel.setPrefWidth(895);
+    	child_panel.setLayoutX(72.5);
+    	
+    	flightsVBox.setPrefWidth(895);
+    	labelPanel.setPrefWidth(895);
+    	firstrow.setPrefWidth(895);
+    	secondrow.setPrefWidth(895);
+    	thirdrow.setPrefWidth(895);
+    	fourthrow.setPrefWidth(895);
+    	
+    	inside_panel5.setLayoutX(75.5);
+    	inside_panel.setLayoutX(75.5);
+    	inside_panel1.setLayoutX(145.5);
+    	inside_panel2.setLayoutX(145.5);
+    	inside_panel3.setLayoutX(145.5);
+    	inside_panel4.setLayoutX(145.5);
+    	
+    }
+    
+    public void animasyon_kapa() {
+    	parent_panel.setPrefWidth(750);
+    	child_panel.setLayoutX(0);
+    	
+    	flightsVBox.setPrefWidth(750);
+    	labelPanel.setPrefWidth(750);
+    	firstrow.setPrefWidth(750);
+    	secondrow.setPrefWidth(750);
+    	thirdrow.setPrefWidth(750);
+    	fourthrow.setPrefWidth(750);
+    	
+    	inside_panel.setLayoutX(0);
+    	inside_panel1.setLayoutX(70);
+    	inside_panel2.setLayoutX(70);
+    	inside_panel3.setLayoutX(70);
+    	inside_panel4.setLayoutX(70);
+    	inside_panel5.setLayoutX(0);
+    }
+    
     
 }

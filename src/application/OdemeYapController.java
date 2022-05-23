@@ -91,8 +91,8 @@ public class OdemeYapController {
 	List<String> GidisSecilenKoltukList = KoltukSecmeController.GidisSecilenKoltukList;
     List<String> DonusSecilenKoltukList = KoltukSecmeController.DonusSecilenKoltukList;
     
-    List<String> selectedGidis = MainController.selectedGidis;
-	List<String> selectedDonus = MainController.selectedDonus;
+    List<String> selectedGidis = AnasayfaController.selectedGidis;
+	List<String> selectedDonus = AnasayfaController.selectedDonus;
 	
 
 	
@@ -144,7 +144,7 @@ public class OdemeYapController {
 			sql = "insert into biletler(userID, nereden, nereye, tarih, saat, ucret, koltuk_no) values(?,?,?,?,?,?,?)";
 			try {
 				sorguIfadesi = baglanti.prepareStatement(sql);
-				sorguIfadesi.setString(1, "1");
+				sorguIfadesi.setString(1, String.valueOf(LoginController.userID));
 				sorguIfadesi.setString(2, selectedList.get(0));
 				sorguIfadesi.setString(3, selectedList.get(1));
 				sorguIfadesi.setString(4, selectedList.get(2));
@@ -152,7 +152,7 @@ public class OdemeYapController {
 				sorguIfadesi.setString(6, selectedList.get(4).replace("₺", ""));
 				sorguIfadesi.setString(7, koltukList.get(i));
 				sorguIfadesi.executeUpdate();
-				System.out.println("Biletler Başarıyla eklendi");
+				MessageBox(AlertType.CONFIRMATION, "Başarılı", "Biletler başarılı şekilde alındı.");
 			} catch (Exception e) {
 				System.out.println(e.getMessage().toString());
 			}

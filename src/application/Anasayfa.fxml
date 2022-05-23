@@ -21,16 +21,20 @@
          <children>
             <Pane fx:id="labelPanel" layoutY="219.0" opacity="0.0" prefHeight="40.0" prefWidth="750.0" styleClass="upside-panel" stylesheets="@application.css">
                <children>
-                  <Label fx:id="lbl_gidis" alignment="CENTER" layoutX="70.0" layoutY="5.0" prefHeight="30.0" prefWidth="250.0" text="Gidiş Seferleri">
-                     <font>
-                        <Font name="Noto Sans Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lbl_donus" alignment="CENTER" layoutX="428.0" layoutY="5.0" prefHeight="30.0" prefWidth="250.0" text="Dönüş Seferleri" textFill="#090909">
-                     <font>
-                        <Font name="Noto Sans Bold" size="16.0" />
-                     </font>
-                  </Label>
+                  <Pane fx:id="inside_panel" prefHeight="40.0" prefWidth="750.0">
+                     <children>
+                        <Label fx:id="lbl_gidis" alignment="CENTER" layoutX="70.0" layoutY="5.0" prefHeight="30.0" prefWidth="250.0" text="Gidiş Seferleri">
+                           <font>
+                              <Font name="Noto Sans Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbl_donus" alignment="CENTER" layoutX="428.0" layoutY="5.0" prefHeight="30.0" prefWidth="250.0" text="Dönüş Seferleri" textFill="#090909">
+                           <font>
+                              <Font name="Noto Sans Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
             <Pane fx:id="parent_panel" layoutY="14.0" prefHeight="200.0" prefWidth="750.0" styleClass="upside-panel" stylesheets="@application.css">
@@ -569,23 +573,27 @@
                   </Pane>
                   <Pane fx:id="fifthrow" opacity="0.0" prefHeight="65.0" prefWidth="750.0" styleClass="upside-panel">
                      <children>
-                        <Button fx:id="btn_koltuksec" contentDisplay="RIGHT" layoutX="428.0" layoutY="9.0" mnemonicParsing="false" onAction="#btn_koltuksec_click" prefHeight="47.0" prefWidth="250.0" styleClass="choose-seat-button" stylesheets="@application.css" text="Koltuk Seçimine Geç">
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/right-arrow.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="btn_reset" layoutX="70.0" layoutY="9.0" mnemonicParsing="false" onAction="#btn_reset_click" prefHeight="47.0" prefWidth="250.0" styleClass="reset-selection" stylesheets="@application.css" text="Seçilenleri Sıfırla">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
+                        <Pane fx:id="inside_panel5" prefHeight="65.0" prefWidth="750.0">
+                           <children>
+                              <Button fx:id="btn_koltuksec" contentDisplay="RIGHT" layoutX="428.0" layoutY="9.0" mnemonicParsing="false" onAction="#btn_koltuksec_click" prefHeight="47.0" prefWidth="250.0" styleClass="choose-seat-button" stylesheets="@application.css" text="Koltuk Seçimine Geç">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/right-arrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="btn_reset" layoutX="70.0" layoutY="9.0" mnemonicParsing="false" onAction="#btn_reset_click" prefHeight="47.0" prefWidth="250.0" styleClass="reset-selection" stylesheets="@application.css" text="Seçilenleri Sıfırla">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </Pane>
                      </children>
                   </Pane>
                </children>

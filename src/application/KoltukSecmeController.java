@@ -1,20 +1,22 @@
 package application;
 
-import java.io.InterruptedIOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
+import com.database.databaseUtil;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -26,10 +28,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class KoltukSecmeController {
 	
+	public KoltukSecmeController() {
+		baglanti = databaseUtil.baglan();
+	}
 	
 
     @FXML
@@ -91,13 +95,21 @@ public class KoltukSecmeController {
     public static List<String> GidisSecilenKoltukList = new ArrayList<>();
     public static List<String> DonusSecilenKoltukList = new ArrayList<>();
     
-    List<String> selectedGidis = MainController.selectedGidis;
-	List<String> selectedDonus = MainController.selectedDonus;
+    List<String> GidisAlinmisKoltukList = new ArrayList<>();
+    List<String> DonusAlinmisKoltukList = new ArrayList<>();
+    
+    List<String> selectedGidis = AnasayfaController.selectedGidis;
+	List<String> selectedDonus = AnasayfaController.selectedDonus;
 	List<ToggleButton> gidisButtons = new ArrayList<>();
 	List<ToggleButton> donusButtons = new ArrayList<>();
 	
 	private double x;
 	private double y;
+	
+    Connection baglanti = null;
+	PreparedStatement sorguIfadesi = null;
+	ResultSet getirilen = null;
+	String sql = null;
     
 	@FXML
     void btn_pay_click(ActionEvent event) {
@@ -207,7 +219,11 @@ public class KoltukSecmeController {
             	createHBox(GidisKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), gidisButtons);
             }
         	
-        }else if(selectedDonus.get(6).toString().equals("Gidiþ Dönüþ")) {
+        	alinmis_koltuklari_getir(GidisAlinmisKoltukList, selectedGidis.get(0), 
+        			selectedGidis.get(1), selectedGidis.get(2), selectedGidis.get(3));
+        	devre_disi_yap(GidisAlinmisKoltukList, gidisButtons);
+        }
+        else if(selectedDonus.get(6).toString().equals("Gidiþ Dönüþ")) {
         	tabPage2.setDisable(false);
         	lbl1_ucus.setText(selectedGidis.get(0) + "-" + selectedGidis.get(1) + " " + selectedGidis.get(2)
 			+ " - " + selectedGidis.get(3));
@@ -220,6 +236,14 @@ public class KoltukSecmeController {
             	createLabel(DonusSayilarVBox,i);
             	createHBox(DonusKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), donusButtons);
             }
+        	
+        	alinmis_koltuklari_getir(GidisAlinmisKoltukList, selectedGidis.get(0), 
+        			selectedGidis.get(1), selectedGidis.get(2), selectedGidis.get(3));
+        	devre_disi_yap(GidisAlinmisKoltukList, gidisButtons);
+        	
+        	alinmis_koltuklari_getir(DonusAlinmisKoltukList, selectedDonus.get(0), 
+        			selectedDonus.get(1), selectedDonus.get(2), selectedDonus.get(3));
+        	devre_disi_yap(DonusAlinmisKoltukList, donusButtons);
         }
     }
     
@@ -302,7 +326,6 @@ public class KoltukSecmeController {
 			});
     	}
     	vbox.getChildren().add(box);
-    	
     }
     
     private void yolcuSayisiKontrol(List<ToggleButton> btn,List<String> secilenKoltukList) {
@@ -323,6 +346,35 @@ public class KoltukSecmeController {
 		}
     }
     
+    private void alinmis_koltuklari_getir(List<String> koltuklar,String nereden, String nereye, String tarih, String saat) {
+    	sql = "select koltuk_no from biletler where nereden=? and nereye=? and tarih=? and saat=?";
+    	try {
+			sorguIfadesi = baglanti.prepareStatement(sql);
+			sorguIfadesi.setString(1, nereden);
+			sorguIfadesi.setString(2, nereye);
+			sorguIfadesi.setString(3, tarih);
+			sorguIfadesi.setString(4, saat);
+			getirilen = sorguIfadesi.executeQuery();
+			while (getirilen.next()) {
+				koltuklar.add(getirilen.getString(1));
+				System.out.println(getirilen.getString(1));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+		}
+    }
+    
+    private void devre_disi_yap(List<String> alinmiskoltuklar, List<ToggleButton> tumkoltuklar) {
+    	for(int i=0; i<tumkoltuklar.size(); i++) {
+    		for(int j=0; j<alinmiskoltuklar.size(); j++)
+    			if(tumkoltuklar.get(i).getId().equals(alinmiskoltuklar.get(j))) {
+    				tumkoltuklar.get(i).getStyleClass().remove(i);
+    				tumkoltuklar.get(i).getStyleClass().add("login-button");
+    				tumkoltuklar.get(i).setDisable(true);
+    				tumkoltuklar.remove(i);
+    			}
+    		}
+    }
     
 
 }

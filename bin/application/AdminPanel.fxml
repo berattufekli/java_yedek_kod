@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" styleClass="main-panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane maxHeight="800.0" maxWidth="1000.0" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" styleClass="main-panel" stylesheets="@application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AdminPanelController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="1000.0" styleClass="main-panel" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -45,7 +45,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="biletlerim_Btn" alignment="BASELINE_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="369.0" mnemonicParsing="false" onAction="#biletlerim_BtnClick" prefHeight="39.0" prefWidth="200.0" styleClass="custom-button" stylesheets="@application.css" text="Biletlerim" textFill="WHITE">
+                  <Button fx:id="biletler_Btn" alignment="BASELINE_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="369.0" mnemonicParsing="false" onAction="#biletler_BtnClick" prefHeight="39.0" prefWidth="200.0" styleClass="custom-button" stylesheets="@application.css" text="Biletler" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -57,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="hesap_Btn" alignment="BASELINE_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" onAction="#hesap_BtnClick" prefHeight="39.0" prefWidth="200.0" styleClass="custom-button" stylesheets="@application.css" text="Hesap" textFill="WHITE">
+                  <Button fx:id="adminler_Btn" alignment="BASELINE_LEFT" graphicTextGap="20.0" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" onAction="#adminler_BtnClick" prefHeight="39.0" prefWidth="200.0" styleClass="custom-button" stylesheets="@application.css" text="Adminler" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

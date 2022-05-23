@@ -15,8 +15,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("MainForm.fxml"));
-			Scene scene = new Scene(root,1000,800, javafx.scene.paint.Color.TRANSPARENT);
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
+			Scene scene = new Scene(root,400,600, javafx.scene.paint.Color.TRANSPARENT);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
 			primaryStage.setScene(scene);

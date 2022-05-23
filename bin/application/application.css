@@ -225,6 +225,36 @@
 	-fx-text-fill: black;
 }
 
+/* Bilet İptal Button */
+.cancel-ticket{
+	-fx-background-color: #F32424;
+	-fx-background-radius: 8px;
+	-fx-font-family: "Noto Sans";
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-text-fill: white;
+}
+
+/* Login Button */ 
+.login-button{
+	-fx-background-color: #397bdd;
+	-fx-background-radius: 8px;
+	-fx-font-family: "Noto Sans";
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-text-fill: white;
+}
+
+/* Yeni Hesap Oluştur Button */
+.new-account-button{
+	-fx-background-color: #AECAF0;
+	-fx-background-radius: 8px;
+	-fx-font-family: "Noto Sans";
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-text-fill: white;
+}
+
 
 
 
