@@ -1,5 +1,6 @@
 package application;
 
+import java.lang.ModuleLayer.Controller;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -286,6 +287,8 @@ public class AnasayfaController {
     
     List<Pane> gidisPaneller = new ArrayList<Pane>();
     List<Pane> donusPaneller = new ArrayList<Pane>();
+    
+    KoltukSecmeController controller;
 
     @FXML
     void YonClick(ActionEvent event) {
@@ -425,6 +428,8 @@ public class AnasayfaController {
     	gidisDonus.setSelected(false);
     	gidisDonus.setStyle("-fx-text-fill: #a6abb7");
 		tekYon.setStyle("-fx-text-fill: #a6abb7;");
+		selectedGidis.clear();
+		selectedDonus.clear();
     }
 
     @FXML
@@ -524,7 +529,8 @@ public class AnasayfaController {
 
     @FXML
     void minimize_btnClick(ActionEvent event) {
-
+    	Stage stage = (Stage)minimize_btn.getScene().getWindow();
+    	stage.setIconified(true);
     }
 
     @FXML
@@ -795,7 +801,7 @@ public class AnasayfaController {
     	alert.setContentText(content);
     	alert.showAndWait();
     }
-    
+    long lastRefreshTime = 0;
     private void MessageBox(List<String> selectedList) {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Uçuş Bilgileri");
@@ -816,8 +822,15 @@ public class AnasayfaController {
     		System.out.println("Koltuk Seçimine Geçiliyor");
     		try {
     			Stage stage = new Stage();
-    			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("KoltukSecme.fxml"));
+    			FXMLLoader loader = FXMLLoader.load(getClass().getResource("KoltukSecme.fxml"));
+    			AnchorPane root = loader.load();
+    			controller = loader.getController();
     			Scene scene = new Scene(root,800,700, javafx.scene.paint.Color.TRANSPARENT);
+    			scene.addPostLayoutPulseListener(()->{
+    			    long refreshTime = System.nanoTime();
+    			    System.out.println(refreshTime - lastRefreshTime);
+    			    lastRefreshTime = refreshTime;
+    			});
     			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
     			stage.initStyle(StageStyle.TRANSPARENT);
     			stage.setScene(scene);

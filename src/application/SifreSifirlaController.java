@@ -1,6 +1,7 @@
 package application;
 
 import java.nio.channels.SelectableChannel;
+import java.nio.file.attribute.DosFileAttributeView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -91,7 +92,7 @@ public class SifreSifirlaController {
     				sql = "update kullanicilar set password=? where username=? and email=?";
     				try {
 						sorguIfadesi = baglanti.prepareStatement(sql);
-						sorguIfadesi.setString(1, txt_password.getText());
+						sorguIfadesi.setString(1, databaseUtil.md5sifrele(txt_password.getText()));
 						sorguIfadesi.setString(2, txt_username.getText());
 						sorguIfadesi.setString(3, txt_eposta.getText());
 						sorguIfadesi.executeUpdate();

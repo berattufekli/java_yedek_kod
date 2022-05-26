@@ -101,7 +101,7 @@ public class YeniHesapController {
         					try {
         						sorguIfadesi = baglanti.prepareStatement(sql);
         						sorguIfadesi.setString(1, txt_username.getText());
-        						sorguIfadesi.setString(2, txt_password.getText());
+        						sorguIfadesi.setString(2, databaseUtil.md5sifrele(txt_password.getText()));
         						sorguIfadesi.setString(3, txt_eposta.getText());
         						sorguIfadesi.executeUpdate();
         						MessageBox();

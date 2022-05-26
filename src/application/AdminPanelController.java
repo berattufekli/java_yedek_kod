@@ -49,20 +49,24 @@ public class AdminPanelController {
     private Button menu_Btn;
     
     AdminAnasayfaController adminAnasayfaController;
+    
+    AdminBiletlerController adminBiletlerController;
+    
+    AdminHesapController adminHesapController;
 
     @FXML
     void adminler_BtnClick(ActionEvent event) {
     	try {
     		animate.fade_out(main_panel_anchor_pane);
-        	FXMLLoader loader=new FXMLLoader(getClass().getResource("Adminler.fxml"));
+        	FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminHesap.fxml"));
         	AnchorPane pane=(AnchorPane) loader.load();
-        	//hesapController = loader.getController();
+        	adminHesapController = loader.getController();
         	main_panel_anchor_pane.getChildren().setAll(pane);
         	animate.fade_in(main_panel_anchor_pane);
         	if(anasayfa_Btn.getText().isEmpty()) {
         		//hesapController.animasyon_ac();
         	}else {
-        		//hesapController.animasyon_kapa();
+        		////hesapController.animasyon_kapa();
         	}
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());
@@ -94,13 +98,13 @@ public class AdminPanelController {
     		animate.fade_out(main_panel_anchor_pane);
         	FXMLLoader loader=new FXMLLoader(getClass().getResource("AdminBiletler.fxml"));
         	AnchorPane pane=(AnchorPane) loader.load();
-        	//biletlerimController = loader.getController();
+        	adminBiletlerController = loader.getController();
         	main_panel_anchor_pane.getChildren().setAll(pane);
         	animate.fade_in(main_panel_anchor_pane);
         	if(anasayfa_Btn.getText().isEmpty()) {
-        		//biletlerimController.animasyon_ac();
+        		adminBiletlerController.animasyon_ac();
         	}else {
-        		//biletlerimController.animasyon_kapa();
+        		//adminBiletlerController.animasyon_kapa();
         	}
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());
@@ -157,6 +161,11 @@ public class AdminPanelController {
         			adminAnasayfaController.animasyon_ac();
         		}
         		
+        		if(adminBiletlerController != null) {
+        			adminBiletlerController.animasyon_ac();
+        		}
+        		
+        		
 			} catch (Exception e) {
 				System.out.println(e.getMessage().toString());
 			}
@@ -182,12 +191,19 @@ public class AdminPanelController {
         			adminAnasayfaController.animasyon_kapa();
         		}
         		
+        		if(adminBiletlerController != null) {
+        			adminBiletlerController.animasyon_kapa();
+        		}
+        		
+        		
 			} catch (Exception e) {
 				System.out.println(e.getMessage().toString());
 			}
 			
     	}
     }
+    
+    
 
     @FXML
     void initialize() {

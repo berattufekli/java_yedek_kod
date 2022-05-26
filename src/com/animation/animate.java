@@ -58,6 +58,12 @@ public class animate {
     	tt1.play();
     }
 	
+	public static void translate_transition(Pane pane, double x) {
+    	TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.6), pane);
+    	tt1.setByX(x);
+    	tt1.play();
+    }
+	
 	public static void translate_transition(TabPane pane, double x) {
     	TranslateTransition tt1 = new TranslateTransition(Duration.seconds(0.6), pane);
     	tt1.setByX(x);

@@ -47,12 +47,12 @@
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" styleClass="upside-panel" stylesheets="@application.css" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="txt_username" alignment="CENTER" layoutX="65.0" layoutY="220.0" prefHeight="33.0" prefWidth="250.0" styleClass="custom-textfield" stylesheets="@application.css" text="admin@admin">
+                  <TextField fx:id="txt_username" alignment="CENTER" layoutX="65.0" layoutY="220.0" prefHeight="33.0" prefWidth="250.0" styleClass="custom-textfield" stylesheets="@application.css" text="berattufekli">
                      <font>
                         <Font name="Noto Sans Bold" size="14.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="txt_password" alignment="CENTER" layoutX="65.0" layoutY="300.0" prefHeight="35.0" prefWidth="250.0" styleClass="custom-textfield" stylesheets="@application.css" text="admin@admin" />
+                  <PasswordField fx:id="txt_password" alignment="CENTER" layoutX="65.0" layoutY="300.0" prefHeight="35.0" prefWidth="250.0" styleClass="custom-textfield" stylesheets="@application.css" text="123456789" />
                   <Label alignment="CENTER" layoutX="115.0" layoutY="180.0" prefHeight="30.0" prefWidth="150.0" text="Kullanıcı Adı" textFill="#aecaf0">
                      <font>
                         <Font name="Noto Sans Bold" size="16.0" />

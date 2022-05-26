@@ -95,6 +95,7 @@ public class OdemeYapController {
 	List<String> selectedDonus = AnasayfaController.selectedDonus;
 	
 
+	KoltukSecmeController controller;
 	
 	ObservableList<String> kartUzerindekiIsimObservableList = FXCollections.observableArrayList(); 
 	ObservableList<String> kartNObservableList = FXCollections.observableArrayList();
@@ -152,11 +153,13 @@ public class OdemeYapController {
 				sorguIfadesi.setString(6, selectedList.get(4).replace("₺", ""));
 				sorguIfadesi.setString(7, koltukList.get(i));
 				sorguIfadesi.executeUpdate();
-				MessageBox(AlertType.CONFIRMATION, "Başarılı", "Biletler başarılı şekilde alındı.");
 			} catch (Exception e) {
 				System.out.println(e.getMessage().toString());
 			}
 		}
+    	MessageBox(AlertType.CONFIRMATION, "Başarılı", "Biletler başarılı şekilde alındı.");
+    	selectedList.clear();
+    	koltukList.clear();
 	}
     
     public void karti_kaydet(String userID, String kartisim, String kartno,String kartcvv,
@@ -294,7 +297,7 @@ public class OdemeYapController {
     				MessageBox(AlertType.ERROR, "Hata", "Maksimum 5 kart kayıt edilebilir.");
     			}
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println(e.getMessage().toString());
 			}
     		
     		System.out.println("Ödeme Sayfasına Geçiliyor");

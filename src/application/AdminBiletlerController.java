@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import com.animation.animate;
 import com.database.databaseUtil;
 import com.mysql.cj.Query;
 
@@ -29,6 +30,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -41,6 +44,13 @@ public class AdminBiletlerController {
 	String styleString = "-fx-font-family:'Noto Sans';"
 	   		   + "-fx-font-weight: bold;"
 	   		   + "-fx-font-size: 14px;";
+	
+
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private BorderPane borderPane;
 
     @FXML
     private ResourceBundle resources;
@@ -91,13 +101,22 @@ public class AdminBiletlerController {
     private DatePicker datetime_bitis;
 
     @FXML
-    private Pane insidePanel_gelirler;
+    private Pane pane_bottom;
 
     @FXML
-    private Button minimize_btn;
+    private Pane pane_center;
+
+    @FXML
+    private Pane pane_inside_bottom;
+
+    @FXML
+    private Pane pane_inside_top;
 
     @FXML
     private Pane panel_top;
+
+    @FXML
+    private Button minimize_btn;
     
     @FXML
     private Button resetBtn;
@@ -150,8 +169,7 @@ public class AdminBiletlerController {
         	sorgu_olustur();
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());
-		}
-    	
+		}	
     }
 
     @FXML
@@ -174,7 +192,6 @@ public class AdminBiletlerController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage().toString());
 		}
-    	
     }
 
     @FXML
@@ -228,7 +245,6 @@ public class AdminBiletlerController {
     	Stage stage = (Stage)minimize_btn.getScene().getWindow();
     	stage.setIconified(true);
     }
-
 
     @FXML
     void txt_userIDKeyTyped(KeyEvent event) {
@@ -338,4 +354,23 @@ public class AdminBiletlerController {
     	alert.setContentText(content);
     	alert.showAndWait();
     }
+    
+    public void animasyon_ac() {
+    	close_btn.setLayoutX(852);
+    	minimize_btn.setLayoutX(820);
+    	borderPane.setPrefWidth(895);
+    	anchorPane.setPrefWidth(895);
+    	pane_bottom.setPrefWidth(895);
+    	animate.translate_transition(pane_inside_bottom, 72.5);
+    	
+    }
+    
+    public void animasyon_kapa() {
+    	close_btn.setLayoutX(706);
+    	minimize_btn.setLayoutX(674);
+    	borderPane.setPrefWidth(760);
+    	anchorPane.setPrefWidth(760);
+    	pane_bottom.setPrefWidth(760);
+    	animate.translate_transition(pane_inside_bottom, -72.5);
+	}
 }

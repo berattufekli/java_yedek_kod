@@ -163,7 +163,7 @@ public class KoltukSecmeController {
     			AnchorPane pane= (AnchorPane) FXMLLoader.load(getClass().getResource("OdemeYap.fxml"));
             	anchor_pane.getChildren().setAll(pane);
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println(e.getMessage().toString());
 			}
     		
     		System.out.println("Ödeme Sayfasýna Geçiliyor");
@@ -210,41 +210,7 @@ public class KoltukSecmeController {
 
     @FXML
     void initialize() {
-        if(selectedGidis.get(6).toString().equals("Tek Yön")) {
-        	tabPage2.setDisable(true);
-        	lbl1_ucus.setText(selectedGidis.get(0) + "-" + selectedGidis.get(1) + " " + selectedGidis.get(2)
-			+ " - " + selectedGidis.get(3));
-        	for(int i=1; i<=15; i++) {
-            	createLabel(GidisSayilarVBox,i);
-            	createHBox(GidisKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), gidisButtons);
-            }
-        	
-        	alinmis_koltuklari_getir(GidisAlinmisKoltukList, selectedGidis.get(0), 
-        			selectedGidis.get(1), selectedGidis.get(2), selectedGidis.get(3));
-        	devre_disi_yap(GidisAlinmisKoltukList, gidisButtons);
-        }
-        else if(selectedDonus.get(6).toString().equals("Gidiþ Dönüþ")) {
-        	tabPage2.setDisable(false);
-        	lbl1_ucus.setText(selectedGidis.get(0) + "-" + selectedGidis.get(1) + " " + selectedGidis.get(2)
-			+ " - " + selectedGidis.get(3));
-        	lbl2_ucus.setText(selectedDonus.get(0) + "-" + selectedDonus.get(1) + " " + selectedDonus.get(2)
-			+ " - " + selectedDonus.get(3));
-        	
-        	for(int i=1; i<=15; i++) {
-            	createLabel(GidisSayilarVBox,i);
-            	createHBox(GidisKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), gidisButtons);
-            	createLabel(DonusSayilarVBox,i);
-            	createHBox(DonusKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), donusButtons);
-            }
-        	
-        	alinmis_koltuklari_getir(GidisAlinmisKoltukList, selectedGidis.get(0), 
-        			selectedGidis.get(1), selectedGidis.get(2), selectedGidis.get(3));
-        	devre_disi_yap(GidisAlinmisKoltukList, gidisButtons);
-        	
-        	alinmis_koltuklari_getir(DonusAlinmisKoltukList, selectedDonus.get(0), 
-        			selectedDonus.get(1), selectedDonus.get(2), selectedDonus.get(3));
-        	devre_disi_yap(DonusAlinmisKoltukList, donusButtons);
-        }
+    	deneme();
     }
     
     private void createLabel(VBox box, int index) {
@@ -374,6 +340,52 @@ public class KoltukSecmeController {
     				tumkoltuklar.remove(i);
     			}
     		}
+    }
+    
+    public void deneme() {
+    	try {
+    		if(selectedGidis.get(6).toString().equals("Tek Yön")) {
+    			GidisKoltuklarVBox.getChildren().clear();
+            	tabPage2.setDisable(true);
+            	lbl1_ucus.setText(selectedGidis.get(0) + "-" + selectedGidis.get(1) + " " + selectedGidis.get(2)
+    			+ " - " + selectedGidis.get(3));
+            	for(int i=1; i<=15; i++) {
+                	createLabel(GidisSayilarVBox,i);
+                	createHBox(GidisKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), gidisButtons);
+                }
+            	
+            	alinmis_koltuklari_getir(GidisAlinmisKoltukList, selectedGidis.get(0), 
+            			selectedGidis.get(1), selectedGidis.get(2), selectedGidis.get(3));
+            	devre_disi_yap(GidisAlinmisKoltukList, gidisButtons);
+            }
+            else if(selectedDonus.get(6).toString().equals("Gidiþ Dönüþ")) {
+            	tabPage2.setDisable(false);
+            	lbl1_ucus.setText(selectedGidis.get(0) + "-" + selectedGidis.get(1) + " " + selectedGidis.get(2)
+    			+ " - " + selectedGidis.get(3));
+            	lbl2_ucus.setText(selectedDonus.get(0) + "-" + selectedDonus.get(1) + " " + selectedDonus.get(2)
+    			+ " - " + selectedDonus.get(3));
+            	
+            	for(int i=1; i<=15; i++) {
+                	createLabel(GidisSayilarVBox,i);
+                	createHBox(GidisKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), gidisButtons);
+                	createLabel(DonusSayilarVBox,i);
+                	createHBox(DonusKoltuklarVBox, new Insets(5,10,5,10),String.valueOf(i), donusButtons);
+                }
+            	
+            	alinmis_koltuklari_getir(GidisAlinmisKoltukList, selectedGidis.get(0), 
+            			selectedGidis.get(1), selectedGidis.get(2), selectedGidis.get(3));
+            	devre_disi_yap(GidisAlinmisKoltukList, gidisButtons);
+            	
+            	alinmis_koltuklari_getir(DonusAlinmisKoltukList, selectedDonus.get(0), 
+            			selectedDonus.get(1), selectedDonus.get(2), selectedDonus.get(3));
+            	devre_disi_yap(DonusAlinmisKoltukList, donusButtons);
+            }
+    		
+		} catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+		}
+        
+        
     }
     
 

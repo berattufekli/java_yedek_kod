@@ -240,9 +240,11 @@ public class HesapController {
     		}
     		else if(fonksiyon.equals("eposta_guncelle")) {
     			eposta_guncelle();
-    		}else if(fonksiyon.equals("kart_guncelle")) {
+    		}
+    		else if(fonksiyon.equals("kart_guncelle")) {
     			kart_guncelle();
-    		}else if(fonksiyon.equals("kart_ekle")) {
+    		}
+    		else if(fonksiyon.equals("kart_ekle")) {
     			kart_ekle();
     		}
     	}
@@ -304,7 +306,7 @@ public class HesapController {
     				sql = "update kullanicilar set password=? where userID=? and password=?";
     				try {
     					sorguIfadesi = baglanti.prepareStatement(sql);
-    					sorguIfadesi.setString(1, txt_NewPasswordTP2.getText());
+    					sorguIfadesi.setString(1, databaseUtil.md5sifrele(txt_NewPasswordTP2.getText()));
     					sorguIfadesi.setInt(2, LoginController.userID);
     					sorguIfadesi.setString(3, txt_OldPasswordTP2.getText());
     					sorguIfadesi.executeUpdate();
@@ -345,7 +347,7 @@ public class HesapController {
     			sorguIfadesi = baglanti.prepareStatement(sql);
     			sorguIfadesi.setString(1, txt_epostaTP3.getText());
     			sorguIfadesi.setInt(2, LoginController.userID);
-    			sorguIfadesi.setString(3, txt_passwordTP3.getText());
+    			sorguIfadesi.setString(3, databaseUtil.md5sifrele(txt_passwordTP3.getText()));
     			sorguIfadesi.executeUpdate();
     			txt_epostaTP3.clear();
     			txt_passwordTP3.clear();
